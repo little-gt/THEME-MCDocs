@@ -24,7 +24,7 @@ $this->need('header.php');
         </p>
         <?php else: ?>
         <p class="page-hero-description" style="font-size: 1.125rem;">
-            <?php $this->description(); ?>
+            <?php echo mb_substr($this->description, 0, 20, 'UTF-8') . (mb_strlen($this->description, 'UTF-8') > 20 ? '...' : ''); ?>
         </p>
         <?php endif; ?>
     </div>

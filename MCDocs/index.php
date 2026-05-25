@@ -70,41 +70,118 @@ $this->need('header.php');
         </div>
     </section>
 
-    <!-- 特性网格区 -->
+    <!-- 分类网格区 -->
     <section class="features-section" id="features">
         <div style="max-width: 1280px; margin: 0 auto; padding: 0 1rem;">
             <h2 class="text-center font-black mb-12 text-3xl md:text-4xl uppercase tracking-wide">
-                核心特性
+                文档分类
             </h2>
             
+            <?php
+            \Widget\Metas\Category\Rows::alloc()->to($indexCategories);
+            
+            // 预加载每个分类的第一篇文章链接
+            $db = \Typecho\Db::get();
+            $firstPosts = [];
+            if ($indexCategories->have()):
+                $indexCategories->rewind();
+                while ($indexCategories->next()) {
+                    $mid = $indexCategories->mid;
+                    $firstPost = $db->fetchRow(
+                        $db->select('c.cid', 'c.slug', 'c.created')
+                            ->from('table.contents AS c')
+                            ->join('table.relationships AS r', 'c.cid = r.cid')
+                            ->where('r.mid = ?', $mid)
+                            ->where('c.type = ?', 'post')
+                            ->where('c.status = ?', 'publish')
+                            ->order('c.created', \Typecho\Db::SORT_DESC)
+                            ->limit(1)
+                    );
+                    if ($firstPost) {
+                        $firstPosts[$mid] = \Typecho\Router::url('post', [
+                            'cid' => $firstPost['cid'],
+                            'slug' => urlencode($firstPost['slug']),
+                            'directory' => '', 'category' => '',
+                            'year' => date('Y', $firstPost['created']),
+                            'month' => date('m', $firstPost['created']),
+                            'day' => date('d', $firstPost['created'])
+                        ], $this->options->index);
+                    }
+                }
+                
+                // 图标和背景色轮换
+                $cardStyles = [
+                    ['icon' => 'fa-solid fa-book-open',   'bg' => '#eff6ff', 'accent' => '#2563eb'],
+                    ['icon' => 'fa-solid fa-folder-tree','bg' => '#f0fdf4', 'accent' => '#059669'],
+                    ['icon' => 'fa-solid fa-code',       'bg' => '#faf5ff', 'accent' => '#7c3aed'],
+                    ['icon' => 'fa-solid fa-wrench',     'bg' => '#fef3c7', 'accent' => '#d97706'],
+                    ['icon' => 'fa-solid fa-rocket',     'bg' => '#fce7f3', 'accent' => '#db2777'],
+                    ['icon' => 'fa-solid fa-shield-halved', 'bg' => '#f3e8ff', 'accent' => '#9333ea'],
+                ];
+                $styleIndex = 0;
+            ?>
+            
             <div class="features-grid">
-                <!-- 特性卡片 1: Markdown 驱动 -->
-                <div class="feature-card block-hover">
-                    <div class="feature-icon"><i class="fa-solid fa-pen-fancy"></i></div>
-                    <h3 class="feature-title">Markdown 驱动</h3>
-                    <p class="feature-description">
-                        使用你最熟悉的 Markdown 语法，编写极其复杂的指南和文档，无需任何额外配置。
+                <?php $indexCategories->rewind(); ?>
+                <?php while ($indexCategories->next()): 
+                    $catMid = $indexCategories->mid;
+                    $style = $cardStyles[$styleIndex % count($cardStyles)];
+                    $firstLink = isset($firstPosts[$catMid]) ? $firstPosts[$catMid] : '#';
+                    
+                    // 获取该分类的文章数
+                    $catPostCount = $db->fetchObject(
+                        $db->select('COUNT(c.cid) AS cnt')
+                            ->from('table.contents AS c')
+                            ->join('table.relationships AS r', 'c.cid = r.cid')
+                            ->where('r.mid = ?', $catMid)
+                            ->where('c.type = ?', 'post')
+                            ->where('c.status = ?', 'publish')
+                    );
+                    $count = $catPostCount ? (int)$catPostCount->cnt : 0;
+                ?>
+                <a href="<?php echo $firstLink; ?>" class="feature-card block-hover" style="
+                    background-color: <?php echo htmlspecialchars($style['bg']); ?>;
+                    text-decoration: none;
+                    color: inherit;
+                    display: block;
+                ">
+                    <div class="feature-icon" style="background-color: <?php echo htmlspecialchars($style['accent']); ?>;">
+                        <i class="<?php echo htmlspecialchars($style['icon']); ?>"></i>
+                    </div>
+                    <h3 class="feature-title"><?php $indexCategories->name(); ?></h3>
+                    <p class="feature-description" style="
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        overflow: hidden;
+                    ">
+                        <?php
+                        $desc = $indexCategories->description();
+                        echo !empty($desc) ? htmlspecialchars($desc) : '浏览此分类下的文档内容';
+                        ?>
                     </p>
-                </div>
-
-                <!-- 特性卡片 2: 矩形美学 -->
-                <div class="feature-card block-hover" style="background-color: #f0fdf4;">
-                    <div class="feature-icon" style="background-color: var(--color-primary);"><i class="fa-solid fa-palette"></i></div>
-                    <h3 class="feature-title">绝对的矩形美学</h3>
-                    <p class="feature-description">
-                        致敬像素方块风格，通过粗糙但充满力量感的直角线条，带来极具辨识度的视觉体验。
-                    </p>
-                </div>
-
-                <!-- 特性卡片 3: 超快渲染速度 -->
-                <div class="feature-card block-hover" style="background-color: #faf5ff;">
-                    <div class="feature-icon" style="background-color: var(--color-purple);"><i class="fa-solid fa-bolt"></i></div>
-                    <h3 class="feature-title">超快渲染速度</h3>
-                    <p class="feature-description">
-                        基于最新的静态站点生成技术，构建只需毫秒级，让读者秒开你的百科全书。
-                    </p>
-                </div>
+                    <div style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.5rem;
+                        margin-top: auto;
+                        padding-top: 0.75rem;
+                        border-top: 1px solid rgba(0,0,0,0.08);
+                        font-size: 0.8125rem;
+                        font-weight: 700;
+                        font-family: 'JetBrains Mono', monospace;
+                        color: <?php echo htmlspecialchars($style['accent']); ?>;
+                    ">
+                        <span><?php echo $count; ?></span> 篇文章
+                        <i class="fa-solid fa-arrow-right" style="font-size: 0.6875rem;"></i>
+                    </div>
+                </a>
+                <?php 
+                    $styleIndex++;
+                endwhile; ?>
             </div>
+            
+            <?php endif; ?>
         </div>
     </section>
 

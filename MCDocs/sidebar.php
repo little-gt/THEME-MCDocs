@@ -29,14 +29,38 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         }
 
         $db = \Typecho\Db::get();
-        $allPostsRaw = $db->fetchAll(
-            $db->select('c.cid', 'c.title', 'c.slug', 'c.created', 'r.mid')
-                ->from('table.contents AS c')
-                ->join('table.relationships AS r', 'c.cid = r.cid')
-                ->where('c.type = ?', 'post')
-                ->where('c.status = ?', 'publish')
-                ->order('c.created', \Typecho\Db::SORT_DESC)
-        );
+        
+        // 根据主题设置决定排序方式
+        $sortMode = $this->options->sidebarSort ?: 'default';
+        switch ($sortMode) {
+            case 'cid_asc':
+                $query = $db->select('c.cid', 'c.title', 'c.slug', 'c.created', 'r.mid')
+                    ->from('table.contents AS c')
+                    ->join('table.relationships AS r', 'c.cid = r.cid')
+                    ->where('c.type = ?', 'post')
+                    ->where('c.status = ?', 'publish')
+                    ->order('c.cid', \Typecho\Db::SORT_ASC);
+                break;
+            case 'cid_desc':
+                $query = $db->select('c.cid', 'c.title', 'c.slug', 'c.created', 'r.mid')
+                    ->from('table.contents AS c')
+                    ->join('table.relationships AS r', 'c.cid = r.cid')
+                    ->where('c.type = ?', 'post')
+                    ->where('c.status = ?', 'publish')
+                    ->order('c.cid', \Typecho\Db::SORT_DESC);
+                break;
+            case 'default':
+            default:
+                $query = $db->select('c.cid', 'c.title', 'c.slug', 'c.created', 'r.mid')
+                    ->from('table.contents AS c')
+                    ->join('table.relationships AS r', 'c.cid = r.cid')
+                    ->where('c.type = ?', 'post')
+                    ->where('c.status = ?', 'publish')
+                    ->order('c.created', \Typecho\Db::SORT_DESC);
+                break;
+        }
+        
+        $allPostsRaw = $db->fetchAll($query);
 
         $groupedPosts = [];
         foreach ($allPostsRaw as $row) {

@@ -40,10 +40,6 @@ $this->need('header.php');
                 <p style="font-size: 1.25rem; font-weight: 500; margin-bottom: 2rem;">
                     <?php $this->fields->excerpt(); ?>
                 </p>
-                <?php else: ?>
-                <p style="font-size: 1.25rem; font-weight: 500; margin-bottom: 2rem;">
-                    在这里，我们将展示 <strong><?php $this->options->title(); ?></strong> 如何将枯燥的 Markdown 元素转化为充满力量感的矩形方块风格。
-                </p>
                 <?php endif; ?>
 
                 <!-- 引用块提示（可选） -->

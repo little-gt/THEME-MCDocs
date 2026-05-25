@@ -64,6 +64,14 @@ function themeConfig($form) {
     // 页脚简介
     $footerDesc = new Typecho_Widget_Helper_Form_Element_Textarea('footerDesc', NULL, '', _t('页脚简介'), _t('页脚 Logo 下方的描述文字，留空则使用站点默认描述'));
     $form->addInput($footerDesc);
+
+    // 侧边栏文章排序方式
+    $sidebarSort = new Typecho_Widget_Helper_Form_Element_Radio('sidebarSort', array(
+        'default' => _t('默认（按发布时间降序）'),
+        'cid_asc'  => _t('CID 从小到大'),
+        'cid_desc' => _t('CID 从大到小')
+    ), 'default', _t('侧边栏排序'), _t('左侧导航栏中文章列表的排序方式'));
+    $form->addInput($sidebarSort);
 }
 
 /**
