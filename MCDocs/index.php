@@ -4,7 +4,7 @@
  *
  * @package MCDocs
  * @author GARFIELDTOM
- * @version 1.0
+ * @version 1.0.1
  * @link http://www.gfieldtom.cool
  */
 

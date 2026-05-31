@@ -2,7 +2,14 @@
 
 > MCDocs 是一款为 Typecho 设计的文档主题 ，采用矩形方块美学、三栏布局、FontAwesome 7 图标系统，专为技术文档和知识库类站点打造，具有完整的评论嵌套、搜索高亮、响应式适配及丰富的主题配置项。
 
-[![MCDocs](https://img.shields.io/badge/版本-1.0.0-007EC6?style=for-the-badge)](https://github.com/little-gt/THEME-MCDocs/) [![License](https://img.shields.io/badge/许可证-GPLv3-blue?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.html) [![Argon](https://img.shields.io/badge/设计支持-Tailwind-orange?style=for-the-badge&logo=Argon)](https://tailwindcss.com/)
+[![MCDocs](https://img.shields.io/badge/版本-1.0.1-007EC6?style=for-the-badge)](https://github.com/little-gt/THEME-MCDocs/) [![License](https://img.shields.io/badge/许可证-GPLv3-blue?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.html) [![Argon](https://img.shields.io/badge/设计支持-Tailwind-orange?style=for-the-badge&logo=Argon)](https://tailwindcss.com/)
+
+---
+
+## 更新
+编辑文章和独立页面时，后台自动显示自定义字段填写面板（`excerpt` / `notice` / `subtitle` / `template`），无需手动输入字段名。
+
+---
 
 ## 预览
 
@@ -80,30 +87,6 @@
 - **完整配置面板** — 备案信息、社交链接、统计代码、自定义 CSS、侧边栏排序
 - **FontAwesome 图标** — 全站零 Emoji，统一图标语言
 - **响应式布局** — 移动端自适应，双侧边栏独立滚动
-
----
-
-## MCDocs Pro
-
-> 升级到 MCDocs Pro，解锁更多高级功能，让你的文档站点更强大、更专业。详细，您可以咨询 coolerxde@qq.com 了解更多。
-
-[![Pro](https://img.shields.io/badge/Pro-专业版-FFD700?style=for-the-badge&logo=bookmate)](https://github.com/little-gt/THEME-MCDocs/) 
-
-### Pro 特色功能
-
-| 功能 | 说明 |
-|------|------|
-| **私密评论** | 支持仅作者和评论者可见的私密评论，保护敏感讨论 |
-| **短代码解析** | 内置富文本短代码解析器，搭配可视化编辑器使用更便捷 |
-| **自动备份** | 设置定时自动备份主题配置和数据，防止意外丢失 |
-| **视频解析器** | 支持主流视频平台链接自动嵌入播放，适配响应式布局 |
-| **子分类支持** | 多级分类嵌套展示，文档结构更清晰，导航更灵活 |
-| **水印功能** | 启用全局水印，保护原创内容，防止盗用 |
-| **增强自定义** | 更多 CSS 变量、更多自定义字段、深度主题定制能力 |
-
-### 从开源版升级
-
-MCDocs Pro 完全兼容开源版配置，平滑升级无需重新配置。一键切换主题版本，保留所有现有数据和设置。
 
 ---
 

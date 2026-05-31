@@ -75,6 +75,28 @@ function themeConfig($form) {
 }
 
 /**
+ * 注册文章/页面自定义字段（在编辑界面显示）
+ */
+function themeFields($layout) {
+    $excerpt = new Typecho_Widget_Helper_Form_Element_Textarea('excerpt', NULL, '', _t('文章摘要'), _t('显示在文章标题下方的摘要文字，留空则不显示'));
+    $layout->addItem($excerpt);
+
+    $notice = new Typecho_Widget_Helper_Form_Element_Textarea('notice', NULL, '', _t('引用块提示'), _t('以引用块样式显示在正文顶部，可用于公告、警告、更新说明等'));
+    $layout->addItem($notice);
+
+    $subtitle = new Typecho_Widget_Helper_Form_Element_Text('subtitle', NULL, '', _t('页面副标题'), _t('独立页 Hero 区域的副标题文字，留空则自动截取描述前 20 字'));
+    $layout->addItem($subtitle);
+
+    $template = new Typecho_Widget_Helper_Form_Element_Radio('template', array(
+        ''       => _t('默认（直接输出内容）'),
+        'team'   => _t('团队成员展示'),
+        'pricing'=> _t('赞助方案'),
+        'faq'    => _t('常见问题')
+    ), '', _t('页面模板类型'), _t('选择独立页面的内容布局方式（当前仅默认模式可用）'));
+    $layout->addItem($template);
+}
+
+/**
  * 文章元信息输出函数
  */
 function postMeta(
