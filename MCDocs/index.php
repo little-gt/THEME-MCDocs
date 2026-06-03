@@ -258,7 +258,9 @@ $this->need('header.php');
             </div>
 
             <!-- 分页导航 -->
-            <?php $this->pageNav('&laquo;', '&raquo;'); ?>
+            <nav style="margin-top: 3rem; text-align: center;">
+                <?php $this->pageNav('&laquo;', '&raquo;'); ?>
+            </nav>
 
             <?php else: ?>
             <!-- 无文章提示 -->

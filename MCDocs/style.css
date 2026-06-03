@@ -1721,6 +1721,62 @@ body {
 }
 
 /* ===================================
+   5.11 Pagination (Typecho pageNav)
+   =================================== */
+.page-navigator,
+.page-navigator ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.page-navigator li {
+    margin: 0;
+}
+
+.page-navigator li a,
+.page-navigator li span.current {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    height: 2.75rem;
+    padding: 0 0.75rem;
+    border: 2px solid var(--color-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--color-white);
+    box-shadow: 3px 3px 0 0 #000;
+    transition: all 200ms ease;
+}
+
+.page-navigator li a:hover {
+    background-color: var(--color-primary);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 0 #000;
+}
+
+.page-navigator li a:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+.page-navigator li span.current {
+    background-color: var(--color-border);
+    color: var(--color-white);
+    box-shadow: none;
+    cursor: default;
+}
+
+/* ===================================
    6. Responsive Breakpoints
    =================================== */
 
