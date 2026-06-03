@@ -282,7 +282,7 @@ onmouseout="this.style.transform='none'">
             color: white;
             flex-shrink: 0;
         ">
-            <?php echo mb_substr($comments->author, 0, 1, 'UTF-8'); ?>
+            <?php echo mb_substr((string)$comments->author, 0, 1, 'UTF-8'); ?>
         </div>
         
         <div style="flex: 1;">
@@ -305,7 +305,7 @@ onmouseout="this.style.transform='none'">
                 <?php endif; ?>
             </div>
             
-            <?php if ($comments->replyTo): ?>
+            <?php if (!empty($comments->replyTo)): ?>
             <span style="font-size: 0.875rem; color: #6b7280;">
                 回复 @<?php $comments->replyTo->author(); ?>
             </span>

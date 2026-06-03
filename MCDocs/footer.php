@@ -18,7 +18,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         <span class="footer-logo-text"><?php $this->options->title(); ?></span>
                     </div>
                     <p class="footer-description">
-                        <?php echo !empty($this->options->footerDesc) ? htmlspecialchars($this->options->footerDesc) : $this->options->description(); ?>
+                        <?php echo !empty($this->options->footerDesc) ? htmlspecialchars((string)$this->options->footerDesc) : $this->options->description(); ?>
                     </p>
                 </div>
 
@@ -42,19 +42,19 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                         <h4 class="footer-link-title">社区</h4>
                         
                         <?php if (!empty($this->options->discordUrl)): ?>
-                        <a href="<?php echo htmlspecialchars($this->options->discordUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
+                        <a href="<?php echo htmlspecialchars((string)$this->options->discordUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-discord" style="margin-right: 0.25rem;"></i>Discord
                         </a>
                         <?php endif; ?>
                         
                         <?php if (!empty($this->options->twitterUrl)): ?>
-                        <a href="<?php echo htmlspecialchars($this->options->twitterUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
+                        <a href="<?php echo htmlspecialchars((string)$this->options->twitterUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-x-twitter" style="margin-right: 0.25rem;"></i>Twitter / X
                         </a>
                         <?php endif; ?>
                         
                         <?php if (!empty($this->options->githubUrl)): ?>
-                        <a href="<?php echo htmlspecialchars($this->options->githubUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
+                        <a href="<?php echo htmlspecialchars((string)$this->options->githubUrl); ?>" class="footer-link" target="_blank" rel="noopener noreferrer">
                             <i class="fa-brands fa-github" style="margin-right: 0.25rem;"></i>GitHub
                         </a>
                         <?php endif; ?>
@@ -75,13 +75,13 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <div class="footer-filing">
                     <?php if (!empty($this->options->icpCode)): ?>
                     <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" class="filing-link">
-                        <?php echo htmlspecialchars($this->options->icpCode); ?>
+                        <?php echo htmlspecialchars((string)$this->options->icpCode); ?>
                     </a>
                     <?php endif; ?>
                     
                     <?php if (!empty($this->options->policeCode)): ?>
                     <a href="https://beian.mps.gov.cn/#/query/webSearch" target="_blank" rel="noopener noreferrer" class="filing-link police-link">
-                        <?php echo htmlspecialchars($this->options->policeCode); ?>
+                        <?php echo htmlspecialchars((string)$this->options->policeCode); ?>
                     </a>
                     <?php endif; ?>
                 </div>
@@ -94,12 +94,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
     <!-- Google Analytics -->
     <?php if (!empty($this->options->gaId)): ?>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars($this->options->gaId); ?>"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo htmlspecialchars((string)$this->options->gaId); ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '<?php echo htmlspecialchars($this->options->gaId); ?>');
+        gtag('config', '<?php echo htmlspecialchars((string)$this->options->gaId); ?>');
     </script>
     <?php endif; ?>
 

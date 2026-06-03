@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
     
     <!-- Favicon -->
     <?php if (!empty($this->options->faviconUrl)): ?>
-    <link rel="icon" href="<?php echo htmlspecialchars($this->options->faviconUrl); ?>">
+    <link rel="icon" href="<?php echo htmlspecialchars((string)$this->options->faviconUrl); ?>">
     <?php endif; ?>
     
     <!-- Tailwind CSS CDN -->
@@ -61,7 +61,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <form action="<?php $this->options->siteUrl(); ?>" method="get" role="search">
                     <input type="text" name="s" 
                            id="searchInput"
-                           <?php if($this->is('search')): ?>value="<?php echo htmlspecialchars($this->request->get('s')); ?>"<?php endif; ?>
+                           <?php if($this->is('search')): ?>value="<?php echo htmlspecialchars((string)$this->request->get('s')); ?>"<?php endif; ?>
                            placeholder="搜索文档 (Ctrl+K)" 
                            class="search-input">
                 </form>
@@ -76,7 +76,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                    href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
                 <?php endwhile; ?>
                 
-                <a href="<?php echo htmlspecialchars($this->options->githubUrl); ?>" class="btn-ghost btn-hover" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="<?php echo htmlspecialchars((string)$this->options->githubUrl); ?>" class="btn-ghost btn-hover" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
 
             <!-- 移动端菜单按钮 -->
@@ -91,7 +91,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <?php if ($this->options->enableSearch == '1'): ?>
                 <form action="<?php $this->options->siteUrl(); ?>" method="get" style="margin-bottom: 1rem;">
                     <input type="text" name="s" 
-                           <?php if($this->is('search')): ?>value="<?php echo htmlspecialchars($this->request->get('s')); ?>"<?php endif; ?>
+                           <?php if($this->is('search')): ?>value="<?php echo htmlspecialchars((string)$this->request->get('s')); ?>"<?php endif; ?>
                            placeholder="搜索..." 
                            class="search-input" style="width: 100%;">
                 </form>
@@ -102,7 +102,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                 <a href="<?php $pages->permalink(); ?>" class="nav-link" style="display: block; padding: 0.5rem 0;"><?php $pages->title(); ?></a>
                 <?php endwhile; ?>
                 
-                <a href="<?php echo htmlspecialchars($this->options->githubUrl); ?>" class="btn-ghost" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="<?php echo htmlspecialchars((string)$this->options->githubUrl); ?>" class="btn-ghost" style="margin-top: 1rem;" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         </div>
     </nav>

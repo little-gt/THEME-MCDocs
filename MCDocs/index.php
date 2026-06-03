@@ -4,7 +4,7 @@
  *
  * @package MCDocs
  * @author GARFIELDTOM
- * @version 1.0.1
+ * @version 1.0.2
  * @link http://www.gfieldtom.cool
  */
 
@@ -19,11 +19,11 @@ $this->need('header.php');
             <!-- 左侧：文字内容 -->
             <div class="hero-content">
                 <div class="version-badge">
-                    <?php echo htmlspecialchars($this->options->versionBadge); ?>
+                    <?php echo htmlspecialchars((string)$this->options->versionBadge); ?>
                 </div>
                 
                 <h1 class="hero-title">
-                    <?php echo htmlspecialchars($this->options->heroTitle); ?>
+                    <?php echo htmlspecialchars((string)$this->options->heroTitle); ?>
                 </h1>
                 
                 <p class="hero-description">
@@ -53,7 +53,7 @@ $this->need('header.php');
                             # config.yml
                         </div>
                         <div class="px-4 text-white/80 font-mono text-sm">
-                            name: "<?php echo htmlspecialchars($this->options->title()); ?>"<br>
+                            name: "<?php echo htmlspecialchars((string)$this->options->title()); ?>"<br>
                             version: 2.0
                         </div>
                     </div>
@@ -140,13 +140,13 @@ $this->need('header.php');
                     $count = $catPostCount ? (int)$catPostCount->cnt : 0;
                 ?>
                 <a href="<?php echo $firstLink; ?>" class="feature-card block-hover" style="
-                    background-color: <?php echo htmlspecialchars($style['bg']); ?>;
+                    background-color: <?php echo htmlspecialchars((string)$style['bg']); ?>;
                     text-decoration: none;
                     color: inherit;
                     display: block;
                 ">
-                    <div class="feature-icon" style="background-color: <?php echo htmlspecialchars($style['accent']); ?>;">
-                        <i class="<?php echo htmlspecialchars($style['icon']); ?>"></i>
+                    <div class="feature-icon" style="background-color: <?php echo htmlspecialchars((string)$style['accent']); ?>;">
+                        <i class="<?php echo htmlspecialchars((string)$style['icon']); ?>"></i>
                     </div>
                     <h3 class="feature-title"><?php $indexCategories->name(); ?></h3>
                     <p class="feature-description" style="
@@ -157,7 +157,7 @@ $this->need('header.php');
                     ">
                         <?php
                         $desc = $indexCategories->description();
-                        echo !empty($desc) ? htmlspecialchars($desc) : '浏览此分类下的文档内容';
+                        echo !empty($desc) ? htmlspecialchars((string)$desc) : '浏览此分类下的文档内容';
                         ?>
                     </p>
                     <div style="
@@ -170,7 +170,7 @@ $this->need('header.php');
                         font-size: 0.8125rem;
                         font-weight: 700;
                         font-family: 'JetBrains Mono', monospace;
-                        color: <?php echo htmlspecialchars($style['accent']); ?>;
+                        color: <?php echo htmlspecialchars((string)$style['accent']); ?>;
                     ">
                         <span><?php echo $count; ?></span> 篇文章
                         <i class="fa-solid fa-arrow-right" style="font-size: 0.6875rem;"></i>

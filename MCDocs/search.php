@@ -20,7 +20,7 @@ $searchKeyword = $this->getKeywords() ?: $this->request->get('s') ?: '';
             </div>
             
             <div style="background-color: #f0fdf4; border: 2px solid #000; padding: 1.25rem 1.5rem; box-shadow: 4px 4px 0 0 #000;">
-                <p style="font-weight: 700; margin-bottom: 0.5rem;">搜索关键词：<span style="color: #059669; font-family: 'JetBrains Mono', monospace; font-size: 1.125rem;">&ldquo;<?php echo htmlspecialchars($searchKeyword); ?>&rdquo;</span></p>
+                <p style="font-weight: 700; margin-bottom: 0.5rem;">搜索关键词：<span style="color: #059669; font-family: 'JetBrains Mono', monospace; font-size: 1.125rem;">&ldquo;<?php echo htmlspecialchars((string)$searchKeyword); ?>&rdquo;</span></p>
                 <p style="font-size: 0.875rem; color: #6b7280;">共找到 <strong><?php echo $this->getTotal(); ?></strong> 篇相关文章</p>
             </div>
         </div>
@@ -51,7 +51,7 @@ $searchKeyword = $this->getKeywords() ?: $this->request->get('s') ?: '';
                         if (!empty($searchKeyword)) {
                             $excerpt = str_ireplace(
                                 $searchKeyword, 
-                                '<mark style="background-color: #fef08a; padding: 0 2px; color: #000; font-weight: 600;">' . htmlspecialchars($searchKeyword) . '</mark>', 
+                                '<mark style="background-color: #fef08a; padding: 0 2px; color: #000; font-weight: 600;">' . htmlspecialchars((string)$searchKeyword) . '</mark>', 
                                 $excerpt
                             );
                         }

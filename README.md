@@ -2,12 +2,12 @@
 
 > MCDocs 是一款为 Typecho 设计的文档主题 ，采用矩形方块美学、三栏布局、FontAwesome 7 图标系统，专为技术文档和知识库类站点打造，具有完整的评论嵌套、搜索高亮、响应式适配及丰富的主题配置项。
 
-[![MCDocs](https://img.shields.io/badge/版本-1.0.1-007EC6?style=for-the-badge)](https://github.com/little-gt/THEME-MCDocs/) [![License](https://img.shields.io/badge/许可证-GPLv3-blue?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.html) [![Argon](https://img.shields.io/badge/设计支持-Tailwind-orange?style=for-the-badge&logo=Argon)](https://tailwindcss.com/)
+[![MCDocs](https://img.shields.io/badge/版本-1.0.2-007EC6?style=for-the-badge)](https://github.com/little-gt/THEME-MCDocs/) [![License](https://img.shields.io/badge/许可证-GPLv3-blue?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0.html) [![Argon](https://img.shields.io/badge/设计支持-Tailwind-orange?style=for-the-badge&logo=Argon)](https://tailwindcss.com/)
 
 ---
 
 ## 更新
-编辑文章和独立页面时，后台自动显示自定义字段填写面板（`excerpt` / `notice` / `subtitle` / `template`），无需手动输入字段名。
+优化空值保护功能，避免在PHP8.1及以上版本中出现空值错误。
 
 ---
 

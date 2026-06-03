@@ -17,7 +17,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
         $currentPostId = null;
         
         if ($this->is('post')) {
-            $currentCategoryId = !empty($this->categories) ? $this->categories[0]['mid'] : null;
+            $currentCategoryId = (!empty($this->categories) && isset($this->categories[0])) ? $this->categories[0]['mid'] : null;
             $currentPostId = $this->cid;
         } elseif ($this->is('category')) {
             $currentCategoryId = $this->mid;
@@ -126,7 +126,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
                     <a href="<?php echo $permalink; ?>" 
                        class="item-link<?php echo $isPostActive ? ' active' : ''; ?>">
                         <span class="item-bullet">•</span>
-                        <span class="item-text"><?php echo htmlspecialchars($postTitle); ?></span>
+                        <span class="item-text"><?php echo htmlspecialchars((string)$postTitle); ?></span>
                     </a>
                 </li>
                 <?php endforeach; ?>

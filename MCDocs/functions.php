@@ -164,16 +164,16 @@ function breadcrumb($archive) {
     echo '<a href="' . $siteUrl . '" style="color: inherit; text-decoration: none;">首页</a>';
     
     if ($archive->is('category')) {
-        echo ' > <span>' . htmlspecialchars($archive->title) . '</span>';
+        echo ' > <span>' . htmlspecialchars((string)$archive->title) . '</span>';
     } elseif ($archive->is('post')) {
-        if ($archive->category) {
-            echo ' > <a href="' . $archive->category['permalink'] . '" style="color: inherit; text-decoration: none;">' . htmlspecialchars($archive->category['name']) . '</a>';
+        if (!empty($archive->category)) {
+            echo ' > <a href="' . htmlspecialchars((string)$archive->category['permalink']) . '" style="color: inherit; text-decoration: none;">' . htmlspecialchars((string)$archive->category['name']) . '</a>';
         }
-        echo ' > <span>' . htmlspecialchars($archive->title) . '</span>';
+        echo ' > <span>' . htmlspecialchars((string)$archive->title) . '</span>';
     } elseif ($archive->is('page')) {
-        echo ' > <span>' . htmlspecialchars($archive->title) . '</span>';
+        echo ' > <span>' . htmlspecialchars((string)$archive->title) . '</span>';
     } elseif ($archive->is('search')) {
-        echo ' > <span>搜索：' . htmlspecialchars($archive->request->get('s')) . '</span>';
+        echo ' > <span>搜索：' . htmlspecialchars($archive->request->get('s') ?: '') . '</span>';
     }
     
     echo '</nav>';
